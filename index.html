@@ -159,7 +159,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 /* HUD chrome */
 .hud-top{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 26px;pointer-events:none}
 .hud-brand{display:flex;align-items:center;gap:9px;pointer-events:auto}
-.hud-mark{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:12px}
+.hud-mark{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:12px;overflow:hidden;position:relative}
 .hud-name{font-family:var(--fd);font-size:13px;letter-spacing:4px}
 .hud-tag{font-size:9px;letter-spacing:1.5px;color:var(--t3);text-transform:uppercase;border:1px solid var(--glass-b);border-radius:100px;padding:5px 12px;background:var(--glass);pointer-events:auto}
 .progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--ion),var(--lime),var(--ember),var(--violet));z-index:60;width:0%;transition:width .1s linear}
@@ -186,7 +186,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 .nb svg{width:14px;height:14px;stroke:currentColor}
 
 .title-lockup{text-align:center;display:flex;flex-direction:column;align-items:center}
-.title-mark{width:60px;height:60px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:26px;margin-bottom:20px;background:radial-gradient(circle at 35% 30%,var(--lime-d),transparent 65%)}
+.title-mark{width:60px;height:60px;border-radius:50%;border:1.5px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:26px;margin-bottom:20px;background:radial-gradient(circle at 35% 30%,var(--lime-d),transparent 65%);overflow:hidden;position:relative}
 .title-h{font-family:var(--fd);font-size:clamp(50px,11vw,140px);letter-spacing:2px;line-height:.9;margin-bottom:8px}
 .title-sub{font-family:var(--fs);font-style:italic;font-size:clamp(14px,1.9vw,20px);color:var(--t2);max-width:540px;margin-bottom:24px}
 .title-badge{display:inline-flex;align-items:center;gap:9px;padding:7px 18px;border:1px solid rgba(255,255,255,.14);border-radius:100px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t2);margin-bottom:8px}
@@ -214,7 +214,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 <div class="progress" id="progress"></div>
 
 <div class="hud-top">
-  <div class="hud-brand"><div class="hud-mark">X</div><div class="hud-name">XEEVIA</div></div>
+  <div class="hud-brand"><div class="hud-mark"><img src="logo.png" alt="Xeevia" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><span style="display:none;width:100%;height:100%;align-items:center;justify-content:center">X</span></div><div class="hud-name">XEEVIA</div></div>
   <div class="hud-tag">Investor Preview — Confidential</div>
 </div>
 
@@ -237,7 +237,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 <section class="slide" data-nm="Cover" data-ac="#c8f53a" id="s01">
   <div class="slide-inner title-lockup">
     <div class="title-badge reveal"><span class="d"></span>Pre-Seed Round · Now Raising</div>
-    <div class="title-mark reveal r1">X</div>
+    <div class="title-mark reveal r1"><img src="logo.png" alt="Xeevia" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><span style="display:none;width:100%;height:100%;align-items:center;justify-content:center">X</span></div>
     <div class="title-h reveal r1">XEEVIA</div>
     <p class="title-sub reveal r2">The internet's missing infrastructure layer — a singular source of truth for portable identity, trust, and reputation.</p>
     <p class="sd reveal r3" style="text-align:center;max-width:none">Investor Preview — 2026</p>
@@ -600,7 +600,7 @@ button{font-family:inherit;cursor:pointer;background:none;border:none;color:inhe
 <!-- 23 CONTACT -->
 <section class="slide" data-nm="Contact" data-ac="#c8f53a" id="s23">
   <div class="slide-inner title-lockup">
-    <div class="title-mark reveal">X</div>
+    <div class="title-mark reveal"><img src="logo.png" alt="Xeevia" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><span style="display:none;width:100%;height:100%;align-items:center;justify-content:center">X</span></div>
     <h2 class="sh reveal r1" style="text-align:center">Let's talk.</h2>
     <p class="sw reveal r2" style="text-align:center">Questions, diligence requests, or next steps — reach out directly.</p>
     <div class="btn-row reveal r3">
