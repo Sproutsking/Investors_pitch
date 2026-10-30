@@ -4,6 +4,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#030305"/>
 <title>XEEVIA — Investor Deck</title>
+<link rel="icon" type="image/png" href="logo.png"/>
+<link rel="apple-touch-icon" href="logo.png"/>
+<meta property="og:image" content="logo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
@@ -59,17 +62,43 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;backgroun
 .cov .big{font-size:clamp(60px,min(14vw,22vh),170px);letter-spacing:3px}
 .badge{display:inline-flex;align-items:center;gap:9px;padding:7px 18px;border:1px solid var(--gb);border-radius:100px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t2);margin-bottom:22px}
 .badge i{width:5px;height:5px;border-radius:50%;background:var(--lime)}
+
+/* ---------- TEAM: photo, name and role on the left, divider, text on the right ---------- */
 .tm{grid-template-columns:repeat(2,1fr)}
-.tc{display:flex;flex-direction:column;gap:clamp(8px,1.4vh,14px)}
-.th{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
-.th .h{margin-bottom:clamp(4px,.8vh,8px)}
-.av{--s:clamp(68px,min(8.5vw,12vh),104px);position:relative;flex:none;width:var(--s);height:var(--s);border-radius:50%;padding:3px;background:conic-gradient(from 160deg,var(--a),var(--ion),var(--violet),var(--a));box-shadow:0 0 30px -8px var(--a)}
-.av .ph{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0b0b10;border:3px solid #07070b;display:grid;place-items:center}
+.tc{display:grid;grid-template-columns:minmax(0,.4fr) 1px minmax(0,.6fr);gap:0 clamp(14px,2vw,26px);align-items:center;padding:clamp(14px,2.4vh,24px) clamp(14px,1.8vw,24px)}
+.tc:nth-child(1){--a:var(--lime)}.tc:nth-child(2){--a:var(--ion)}.tc:nth-child(3){--a:var(--ember)}.tc:nth-child(4){--a:var(--violet)}
+.tl-l{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(6px,1.1vh,12px)}
+.tl-l .h,.tl-l .tag{margin:0}
+.tl-d{align-self:stretch;width:1px;background:linear-gradient(to bottom,transparent,var(--a),transparent);opacity:.6}
+.tc .p{font-size:clamp(13.5px,min(1.4vw,2vh),16.5px)}
+.av{--s:clamp(96px,min(13vw,20vh),156px);position:relative;flex:none;width:var(--s);height:var(--s);border-radius:50%;padding:3px;background:conic-gradient(from 160deg,var(--a),var(--ion),var(--violet),var(--a));box-shadow:0 0 30px -8px var(--a);cursor:zoom-in;-webkit-tap-highlight-color:transparent;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+@media(hover:hover){.av:hover{transform:scale(1.04)}}
+.av .ph{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#0b0b10;border:0;display:grid;place-items:center}
 .av .ph span{font-family:var(--fd);font-size:calc(var(--s)*.34);letter-spacing:1px;color:var(--a)}
-.av .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0b0b10}
-@media(max-width:640px){.tm{grid-template-columns:1fr}}
+.av .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 22%);background:#0b0b10;image-rendering:auto;filter:contrast(1.04) saturate(1.05)}
+@media(max-width:640px){.tm{grid-template-columns:1fr}.tc{grid-template-columns:minmax(0,.4fr) 1px 1fr}.av{--s:84px}}
+
+/* ---------- PHOTO POP-UP ---------- */
+.zl{position:fixed;inset:0;z-index:100;display:none}.zl.on{display:block}
+.zl-bd{position:absolute;inset:0;background:rgba(3,3,5,.84);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;transition:opacity .45s}
+.zl.go .zl-bd{opacity:1}
+.zl-c{position:fixed;border-radius:50%;transform-origin:50% 50%;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.zl-img{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#0b0b10;display:grid;place-items:center;font-family:var(--fd);font-size:min(150px,30vw);color:var(--zc,#c8f53a)}
+.zl-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:auto;filter:contrast(1.04) saturate(1.05)}
+.zl-ring{position:absolute;inset:-9px;border-radius:50%;pointer-events:none;background:conic-gradient(from 0deg,var(--zc,#c8f53a),transparent 38%,#7de8ff 66%,transparent 90%,var(--zc,#c8f53a));-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.4px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.4px));animation:zr 9s linear infinite}
+@keyframes zr{to{transform:rotate(360deg)}}
+.zl-x{position:fixed;top:max(18px,env(safe-area-inset-top));right:18px;z-index:2;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(7,7,11,.8);font-size:26px;line-height:1;display:grid;place-items:center;opacity:0;transition:opacity .4s .15s,border-color .25s}
+.zl-x:hover{border-color:var(--zc,#c8f53a)}.zl.go .zl-x{opacity:1}
+.zl-n{position:fixed;left:0;right:0;text-align:center;padding:0 20px;opacity:0;transform:translateY(8px);transition:opacity .4s .2s,transform .5s .2s cubic-bezier(.16,1,.3,1)}
+.zl-n b{display:block;font-family:var(--fd);font-size:30px;font-weight:400;letter-spacing:1px;text-transform:uppercase}
+.zl-n span{display:block;margin-top:2px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--zc,#c8f53a)}
+.zl.go .zl-n{opacity:1;transform:none}
+
 .hud{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;height:calc(var(--hh) + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) clamp(18px,3vw,26px) 0;background:#07070b;border-bottom:1px solid var(--gb)}
-.hn{font-family:var(--fd);font-size:17px;letter-spacing:4px}.ht{font-size:9px;letter-spacing:1.5px;color:var(--t3);text-transform:uppercase;border:1px solid var(--gb);border-radius:100px;padding:5px 12px;background:var(--glass)}
+.hn{display:flex;align-items:center;gap:11px;font-family:var(--fd);font-size:17px;letter-spacing:4px}
+.lm{width:28px;height:28px;border-radius:50%;overflow:hidden;background:#000;border:1px solid rgba(200,245,58,.4);flex:none}
+.lm img{width:100%;height:100%;object-fit:cover;transform:scale(1.5);display:block}
+.ht{font-size:9px;letter-spacing:1.5px;color:var(--t3);text-transform:uppercase;border:1px solid var(--gb);border-radius:100px;padding:5px 12px;background:var(--glass)}
 .pg{position:fixed;top:0;left:0;height:2px;width:0;z-index:60;background:linear-gradient(90deg,var(--ion),var(--lime),var(--ember),var(--violet))}
 .hb{position:fixed;bottom:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;height:calc(var(--fh) + env(safe-area-inset-bottom,0px));padding:0 clamp(18px,3vw,26px) env(safe-area-inset-bottom,0px);background:#07070b;border-top:1px solid var(--gb)}
 .ct{font-size:13px;color:var(--t2);letter-spacing:1px}.ct b{color:var(--t1)}
@@ -86,11 +115,11 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;backgroun
 @media(prefers-reduced-motion:reduce){*{transition-duration:.001ms!important;scroll-behavior:auto!important}}
 </style></head><body>
 <div class="orb" id="orb"></div><div class="pg" id="pg"></div>
-<div class="hud"><div class="hn">XEEVIA</div></div>
+<div class="hud"><div class="hn"><span class="lm"><img src="logo.png" alt="" onerror="this.parentNode.remove()"></span>XEEVIA</div></div>
 <main class="deck" id="deck">
 
 <section class="slide" data-ac="lime"><div class="in cov">
-<div class="badge rv"><i></i>Pre-Seed · $120K for 10%</div>
+<div class="badge rv"><i></i>Pre-Seed · $120K for 8%</div>
 <div class="big rv d1">XEEVIA</div>
 <p class="sw rv d2" style="text-align:center;margin:18px auto 0;max-width:560px">The internet’s missing infrastructure layer: one source of truth for <b>portable identity, trust and reputation.</b></p>
 <p class="fine rv d3">Target: 1,000,000+ users in year one · Investor Preview — 2026</p></div><div class="gn">01</div></section>
@@ -212,41 +241,41 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;backgroun
 <div class="ey rv"><b>12</b><u></u>Who’s Building This</div>
 <h2 class="sh rv d1">A small team,<br><i>building deliberately.</i></h2>
 <div class="cg tm rv d2" style="margin-top:10px">
-<div class="gc tc"><div class="th"><div><div class="h">Emmanuel</div><div class="tag">Founder &amp; CEO</div></div><div class="av"><div class="ph"><span>EM</span><img src="Sproutsking.png" alt="Emmanuel, Founder &amp; CEO" onerror="this.remove()"></div></div></div><p class="p">Architect of the vision and the platform, from first idea to the product live today.</p></div>
-<div class="gc tc"><div class="th"><div><div class="h">Nenkang Bamayang</div><div class="tag">Chief Marketing Officer</div></div><div class="av"><div class="ph"><span>NB</span><img src="image2.png" alt="Nenkang Bamayang, Chief Marketing Officer" onerror="this.remove()"></div></div></div><p class="p">Narrative, reach and relationships.</p></div>
-<div class="gc tc"><div class="th"><div><div class="h">Douna Empire</div><div class="tag">Social Media Manager</div></div><div class="av"><div class="ph"><span>DE</span><img src="Dounaempire.png" alt="Douna Empire, Social Media Manager" onerror="this.remove()"></div></div></div><p class="p">Xeevia’s presence on every platform people already use.</p></div>
-<div class="gc tc"><div class="th"><div><div class="h">YCEE</div><div class="tag">Partnership Manager</div></div><div class="av"><div class="ph"><span>YC</span><img src="Y-CEE.png" alt="YCEE, Partnership Manager" onerror="this.remove()"></div></div></div><p class="p">The alliances and integrations that extend Xeevia’s reach.</p></div></div></div><div class="gn">13</div></section>
+<div class="gc tc" style="--op:50% 26%"><div class="tl-l"><div class="av"><div class="ph"><span>EM</span><img src="Sproutsking.png" alt="Emmanuel, Founder &amp; CEO" decoding="async" onerror="this.remove()"></div></div><div class="h">Emmanuel</div><div class="tag">Founder &amp; CEO</div></div><i class="tl-d"></i><p class="p">Architect of the vision and the platform, from first idea to the product live today.</p></div>
+<div class="gc tc" style="--op:50% 18%"><div class="tl-l"><div class="av"><div class="ph"><span>NB</span><img src="image2.png" alt="Nenkang Bamayang, Chief Marketing Officer" decoding="async" onerror="this.remove()"></div></div><div class="h">Nenkang Bamayang</div><div class="tag">Chief Marketing Officer</div></div><i class="tl-d"></i><p class="p">Narrative, reach and relationships.</p></div>
+<div class="gc tc" style="--op:50% 16%"><div class="tl-l"><div class="av"><div class="ph"><span>DE</span><img src="Dounaempire.png" alt="Douna Empire, Social Media Manager" decoding="async" onerror="this.remove()"></div></div><div class="h">Douna Empire</div><div class="tag">Social Media Manager</div></div><i class="tl-d"></i><p class="p">Xeevia’s presence on every platform people already use.</p></div>
+<div class="gc tc" style="--op:50% 22%"><div class="tl-l"><div class="av"><div class="ph"><span>YC</span><img src="Y-CEE.png" alt="YCEE, Partnership Manager" decoding="async" onerror="this.remove()"></div></div><div class="h">YCEE</div><div class="tag">Partnership Manager</div></div><i class="tl-d"></i><p class="p">The alliances and integrations that extend Xeevia’s reach.</p></div></div></div><div class="gn">13</div></section>
 
 <section class="slide" data-ac="signal"><div class="in">
 <div class="ey rv"><b>13</b><u></u>The Ask</div>
 <div class="ask">
-<div class="rv d1"><div class="big" style="color:var(--a)">$120K<small>for 10% of Xeevia</small></div>
-<p class="sw" style="margin-top:26px">A $1.2M post-money valuation, priced against a product that is already built and live.</p></div>
+<div class="rv d1"><div class="big" style="color:var(--a)">$120K<small>for 8% of Xeevia</small></div>
+<p class="sw" style="margin-top:26px">A $1.5M post-money valuation, priced against a product that is already built and live.</p></div>
 <div class="rv d2">
 <div class="row"><span>Round</span><b>Pre-seed</b></div><div class="row"><span>Investment</span><b>$120,000</b></div>
-<div class="row"><span>Equity offered</span><b>10%</b></div><div class="row"><span>Post-money valuation</span><b>$1,200,000</b></div>
+<div class="row"><span>Equity offered</span><b>8%</b></div><div class="row"><span>Post-money valuation</span><b>$1,500,000</b></div>
 <div class="row"><span>Engineering &amp; protocol</span><b>50%</b></div><div class="row"><span>Growth &amp; acquisition</span><b>20%</b></div>
 <div class="row"><span>Infrastructure</span><b>15%</b></div><div class="row"><span>Operations, Abuja</span><b>10%</b></div>
 <div class="row"><span>Buffer</span><b>5%</b></div></div></div></div><div class="gn">14</div></section>
 
 <section class="slide" data-ac="lime"><div class="in">
 <div class="ey rv"><b>14</b><u></u>Your Return</div>
-<h2 class="sh rv d1">Entry at $1.2M.<br><i>The upside is the gap.</i></h2>
+<h2 class="sh rv d1">Entry at $1.5M.<br><i>The upside is the gap.</i></h2>
 <div class="gc rv d2" style="margin-top:12px"><table class="tb">
-<tr><th>Later valuation</th><th>Your 10%, before dilution</th><th class="r" style="text-align:right">Multiple</th></tr>
-<tr><td>$6M · Seed</td><td>$600,000</td><td class="r">5.0×</td></tr>
-<tr><td>$25M</td><td>$2,500,000</td><td class="r">20.8×</td></tr>
-<tr><td>$100M</td><td>$10,000,000</td><td class="r">83.3×</td></tr></table></div>
+<tr><th>Later valuation</th><th>Your 8%, before dilution</th><th class="r" style="text-align:right">Multiple</th></tr>
+<tr><td>$6M · Seed</td><td>$480,000</td><td class="r">4.0×</td></tr>
+<tr><td>$25M</td><td>$2,000,000</td><td class="r">16.7×</td></tr>
+<tr><td>$100M</td><td>$8,000,000</td><td class="r">66.7×</td></tr></table></div>
 <p class="fine rv d3">Illustrative arithmetic, not a forecast. Later rounds will dilute the stake. The point: the entry price is set low relative to what is already built.</p></div><div class="gn">15</div></section>
 
 <section class="slide" data-ac="lime"><div class="in cov">
 <h2 class="sh rv" style="font-size:clamp(34px,6vw,84px);max-width:860px">Products change. Features evolve.<br><i>Trust does not expire.</i></h2>
-<p class="sw rv d1" style="text-align:center;margin-left:auto;margin-right:auto">$120,000 for 10% is open now. Early investors take the lowest price this company will ever have.</p>
+<p class="sw rv d1" style="text-align:center;margin-left:auto;margin-right:auto">$120,000 for 8% is open now. Early investors take the lowest price this company will ever have.</p>
 <div class="btns rv d2" style="justify-content:center"><a class="bp" href="mailto:founders@xeevia.com?subject=Xeevia%20pre-seed%20%E2%80%94%20I%E2%80%99m%20in">Commit to the round</a><a class="bs" href="mailto:founders@xeevia.com?subject=Xeevia%20diligence%20request">Request diligence pack</a></div>
 <p class="fine rv d3">founders@xeevia.com · Confidential Investor Preview</p></div><div class="gn">16</div></section>
 </main>
 
-<div class="hb"><div class="ct"><b id="cn">01</b> / <span id="tn">15</span></div>
+<div class="hb"><div class="ct"><b id="cn">01</b> / <span id="tn">16</span></div>
 <div class="nv"><button class="nb" id="pv" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button><button class="nb" id="nx" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button></div></div>
 <script>
 (function(){
@@ -271,5 +300,39 @@ addEventListener('resize',relayout);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 addEventListener('load',fit);
 var h=parseInt((location.hash||'').slice(1),10)||1;fit();requestAnimationFrame(function(){d.scrollLeft=(h-1)*d.clientWidth;set(h-1)});
+})();
+
+/* ---------- team photo pop-up ---------- */
+(function(){
+var avs=[].slice.call(document.querySelectorAll('.tc .av'));if(!avs.length)return;
+var lb=document.createElement('div');lb.className='zl';lb.setAttribute('aria-hidden','true');
+lb.innerHTML='<div class="zl-bd"></div><button class="zl-x" type="button" aria-label="Close">&times;</button><div class="zl-c" role="dialog" aria-modal="true" aria-label="Team photo"><div class="zl-ring"></div><div class="zl-img"></div></div><p class="zl-n"><b></b><span></span></p>';
+document.body.appendChild(lb);
+var bd=lb.querySelector('.zl-bd'),xb=lb.querySelector('.zl-x'),c=lb.querySelector('.zl-c'),im=lb.querySelector('.zl-img'),nm=lb.querySelector('.zl-n'),cur=null,busy=false,tm=0;
+function sz(){return Math.round(Math.min(innerWidth*.86,innerHeight*.58,520))}
+function place(av){var s=sz(),top=Math.max(70,(innerHeight-s)/2-34),left=(innerWidth-s)/2,r=av.getBoundingClientRect();
+c.style.width=c.style.height=s+'px';c.style.left=left+'px';c.style.top=top+'px';nm.style.top=(top+s+30)+'px';
+return 'translate('+(r.left+r.width/2-left-s/2)+'px,'+(r.top+r.height/2-top-s/2)+'px) scale('+(r.width/s)+')'}
+function open(av){if(busy||cur)return;busy=true;cur=av;clearTimeout(tm);
+var card=av.closest('.tc'),src=av.querySelector('img');
+lb.style.setProperty('--zc',getComputedStyle(card).getPropertyValue('--a').trim()||'#c8f53a');
+im.textContent='';
+if(src&&src.complete&&src.naturalWidth){var i=new Image();i.src=src.currentSrc||src.src;i.alt=src.alt;i.decoding='sync';i.style.objectPosition=getComputedStyle(src).objectPosition;im.appendChild(i)}
+else{var sp=av.querySelector('span');im.textContent=sp?sp.textContent:''}
+nm.querySelector('b').textContent=card.querySelector('.h').textContent;
+nm.querySelector('span').textContent=card.querySelector('.tag').textContent;
+lb.classList.add('on');lb.setAttribute('aria-hidden','false');
+c.style.transition='none';c.style.transform=place(av);void c.offsetWidth;
+av.style.visibility='hidden';c.style.transition='';lb.classList.add('go');c.style.transform='none';
+tm=setTimeout(function(){busy=false;try{xb.focus({preventScroll:true})}catch(e){}},620)}
+function close(){if(!cur||busy)return;busy=true;clearTimeout(tm);var av=cur;c.style.transform=place(av);lb.classList.remove('go');
+tm=setTimeout(function(){av.style.visibility='';lb.classList.remove('on');lb.setAttribute('aria-hidden','true');cur=null;busy=false;try{av.focus({preventScroll:true})}catch(e){}},560)}
+avs.forEach(function(av){av.tabIndex=0;av.setAttribute('role','button');av.setAttribute('aria-label','View '+av.closest('.tc').querySelector('.h').textContent+' larger');
+var g=av.querySelector('img');if(g){g.loading='eager';g.decoding='async'}
+av.addEventListener('click',function(){open(av)});
+av.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();open(av)}})});
+xb.addEventListener('click',close);bd.addEventListener('click',close);
+addEventListener('keydown',function(e){if(!cur)return;e.stopImmediatePropagation();e.preventDefault();if(e.key==='Escape')close()},true);
+addEventListener('resize',function(){if(cur&&!busy){c.style.transition='none';place(cur);c.style.transform='none'}});
 })();
 </script></body></html>
